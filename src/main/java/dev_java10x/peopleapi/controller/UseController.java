@@ -4,10 +4,12 @@ import dev_java10x.peopleapi.domain.Users;
 import dev_java10x.peopleapi.service.UserService;
 import jakarta.inject.Inject;
 import jakarta.persistence.QueryHint;
+import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.jboss.logging.Logger;
@@ -22,9 +24,10 @@ public class UseController {
 
     @GET 
     @Produces(MediaType.APPLICATION_JSON)
-    
-    public Response findAllUsers() {
-          return Response.ok().build();
+    public Response findAllUsers(@QueryParam ("page") @DefaultValue("0") Integer page,
+                                 @QueryParam ("pageSize") @DefaultValue("10") Integer pageSize) {
+          var users = userService.findAllUsers(page, pageSize);
+          return Response.ok(users).build();
     }
 
     @POST 
