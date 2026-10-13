@@ -1,6 +1,12 @@
--- This file allow to write SQL commands that will be emitted in test and dev.
--- The commands are commented as their support depends of the database
--- insert into myentity (id, field) values(1, 'field-1');
--- insert into myentity (id, field) values(2, 'field-2');
--- insert into myentity (id, field) values(3, 'field-3');
--- alter sequence myentity_seq restart with 4;
+insert into tb_users (id, username, email) values (newid(), 'Alice', 'alice@email.com');
+insert into tb_users (id, username, email) values (newid(), 'Bruno', 'bruno@email.com');
+insert into tb_users (id, username, email) values (newid(), 'Carla', 'carla@email.com');
+insert into tb_users (id, username, email) values (newid(), 'Diego', 'diego@email.com');
+insert into tb_users (id, username, email) values (newid(), 'Elisa', 'elisa@email.com');
+insert into tb_users (id, username, email) values (newid(), 'Fabio', 'fabio@email.com');
+insert into tb_users (id, username, email) values (newid(), 'Gabriela', 'gabriela@email.com');
+insert into tb_users (id, username, email) values (newid(), 'Henrique', 'henrique@email.com');
+insert into tb_users (id, username, email) values (newid(), 'Ines', 'ines@email.com');
+insert into tb_users (id, username, email) values (newid(), 'Joao', 'joao@email.com');
+insert into tb_users (id, username, email) values (newid(), 'Karina', 'karina@email.com');
+insert into tb_users (id, username, email) values (newid(), 'Lucas', 'lucas@email.com');

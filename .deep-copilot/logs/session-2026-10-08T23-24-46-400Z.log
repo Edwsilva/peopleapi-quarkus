@@ -1,6 +1,0 @@
-[2026-10-08T23:24:46.400Z] [INIT] Deep Copilot debug log started. file=/home/edwilson/Documentos/@Cursos/projetos-quarkus/peopleapi-quarkus/.deep-copilot/logs/session-2026-10-08T23-24-46-400Z.log
-[2026-10-08T23:24:46.400Z] [ACTIVATE] {"version":"0.43.1"}
-[2026-10-08T23:24:46.400Z] [PROVIDERS_LOADED] {"count":4,"ids":["anthropic","custom","deepseek","openai"]}
-[2026-10-08T23:24:46.401Z] [TERMINAL_MONITOR_STARTED] {}
-[2026-10-08T23:24:46.401Z] [STATUSBAR_REGISTERED] {"id":"deepseekAgent.statusBar"}
-[2026-10-08T23:24:46.402Z] [INLINE_COMPLETION_REGISTERED]

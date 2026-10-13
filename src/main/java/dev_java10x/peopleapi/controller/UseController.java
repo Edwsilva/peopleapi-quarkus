@@ -1,9 +1,10 @@
 package dev_java10x.peopleapi.controller;
 
+import org.jboss.logging.Logger;
+
 import dev_java10x.peopleapi.domain.Users;
 import dev_java10x.peopleapi.service.UserService;
 import jakarta.inject.Inject;
-import jakarta.persistence.QueryHint;
 import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -12,8 +13,6 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import org.jboss.logging.Logger;
-
 @Path("/users")
 public class UseController {
 
@@ -26,8 +25,12 @@ public class UseController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response findAllUsers(@QueryParam ("page") @DefaultValue("0") Integer page,
                                  @QueryParam ("pageSize") @DefaultValue("10") Integer pageSize) {
+          LOG.infof("Buscando usuários: page=%d, pageSize=%d", page, pageSize);
+
           var users = userService.findAllUsers(page, pageSize);
-          return Response.ok(users).build();
+          return Response.ok(users)
+              .header("X-Total-Count", userService.countUsers())
+              .build();
     }
 
     @POST 
