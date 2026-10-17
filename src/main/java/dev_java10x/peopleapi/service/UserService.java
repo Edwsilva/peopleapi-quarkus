@@ -1,11 +1,13 @@
 package dev_java10x.peopleapi.service;
 
 import dev_java10x.peopleapi.domain.Users;
+import dev_java10x.peopleapi.domain.exceptions.UserNotFoundException;
 import io.quarkus.panache.common.Sort;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.jboss.logging.Logger;
 @ApplicationScoped 
@@ -33,5 +35,11 @@ public class UserService {
     long total = Users.count();
     LOG.infof("Total de usuários no banco: %d", total);
     return total;
+  }
+
+  public Users findUserById(UUID userid) {
+    LOG.infof("Buscando usuário por ID: %s", userid);
+    return (Users) Users.findByIdOptional(userid)
+                .orElseThrow(UserNotFoundException::new);
   }
 }

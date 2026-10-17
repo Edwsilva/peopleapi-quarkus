@@ -1,5 +1,7 @@
 package dev_java10x.peopleapi.controller;
 
+import java.util.UUID;
+
 import org.jboss.logging.Logger;
 
 import dev_java10x.peopleapi.domain.Users;
@@ -9,6 +11,7 @@ import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
@@ -22,6 +25,7 @@ public class UseController {
     UserService userService;
 
     @GET 
+    @Path("/list")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findAllUsers(@QueryParam ("page") @DefaultValue("0") Integer page,
                                  @QueryParam ("pageSize") @DefaultValue("10") Integer pageSize) {
@@ -33,7 +37,19 @@ public class UseController {
               .build();
     }
 
+    @GET 
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findUserById(@PathParam("id") UUID userid) {
+          LOG.infof("Buscando usuários: id=%s", userid);
+
+          var user = userService.findUserById(userid);
+          return Response.ok(user)
+              .build();
+    }
+
     @POST 
+    @Path ("/create")
     @Produces(MediaType.APPLICATION_JSON)
     
     public Response createUsers(Users users) {
@@ -44,5 +60,13 @@ public class UseController {
             .entity(created)
             .build();
         // return Response.ok(userService.createUser(created)).build();
+    }
+
+    @PUT 
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateUsers() {
+          return Response.ok(r)
+              .build();
     }
 }
